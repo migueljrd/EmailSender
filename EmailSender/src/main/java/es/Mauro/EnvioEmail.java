@@ -6,7 +6,7 @@ import javax.activation.*;
 
 public class EnvioEmail
 {
-	 public void SendMail() {
+	 public void SendMail(String email) {
 	        Properties props = new Properties();
 	        props.put("mail.smtp.auth", "true");
 	        props.put("mail.smtp.starttls.enable", "true");
@@ -24,9 +24,8 @@ public class EnvioEmail
 	        	Multipart multiparte = new MimeMultipart();
 	            Message message = new MimeMessage(session);
 	            message.setFrom(new InternetAddress("gamingvalleyurjc@gmail.com"));
-	            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("m.robledod@alumnos.urjc.es"));
-	            message.setSubject("Practica POO");
-	            message.setText("Echale un ojo y me dices: http://bit.ly/IEN3qB");
+	            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
+	            message.setSubject("Pedido");
 	            BodyPart cuerpoMensaje = new MimeBodyPart();
 	            cuerpoMensaje = new MimeBodyPart();
 	            DataSource fuente = new FileDataSource("C:/Users/miguel/Desktop/pedido.pdf");

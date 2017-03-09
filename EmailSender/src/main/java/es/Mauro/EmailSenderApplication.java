@@ -8,7 +8,7 @@ public class EmailSenderApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmailSenderApplication.class, args);
-		EnvioEmail m=new EnvioEmail();
-		m.SendMail();
+		ServidorEmail x=new ServidorEmail();
+		x.iniciar();
 	}
 }
