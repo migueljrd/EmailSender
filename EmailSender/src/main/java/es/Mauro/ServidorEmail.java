@@ -1,4 +1,5 @@
 package es.Mauro;
+import java.io.IOException;
 import java.net.*;
 import java.util.*;
 
@@ -7,36 +8,49 @@ public class ServidorEmail {
 	private Socket sCliente;
 	private Scanner entrada;
 	public void iniciar(){
-		while(true){
+
 		try{
 			sServidor=new ServerSocket(9990);
+			while(true){
 			System.out.println(" - SERVIDOR INICIADO - ");
 			System.out.println(" - Esperando Cliente - ");
 			sCliente=sServidor.accept();
-			entrada=new Scanner (sCliente.getInputStream());
-			if(entrada.hasNext()){
-			String email=entrada.next();
-			System.out.println("Email destinatario:"+email);
-			
-			EnvioEmail m=new EnvioEmail();
-			m.SendMail(email);
-			}else{
-				System.out.println("error al obtener email");
+			new Thread(){
+				public void run(){
+					try {
+						entrada=new Scanner (sCliente.getInputStream());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					if(entrada.hasNext()){
+					String email=entrada.next();
+					System.out.println("Email destinatario:"+email);
+					
+					EnvioEmail m=new EnvioEmail();
+					m.SendMail(email);
+					}else{
+						System.out.println("error al obtener email");
+					}
+					finalizar();
+				}
+			}.start();
 			}
-			finalizar();
-		}
-		catch(Exception e){
+			}
+
+		
+			catch(Exception e){
 			e.printStackTrace();
 			finalizar();
 		}
+			
+		
 		}
-		}
+
 	public void finalizar(){
 		try{
-			//salida.close();
 			entrada.close();
 			sCliente.close();
-			sServidor.close();
+			//sServidor.close();
 			System.out.print("Conexion Finalizada!!");
 		}catch(Exception e)
 		{
