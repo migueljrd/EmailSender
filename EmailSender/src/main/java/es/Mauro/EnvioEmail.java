@@ -28,7 +28,7 @@ public class EnvioEmail{
 	    	message.setSubject("Pedido");
 	    	BodyPart cuerpoMensaje = new MimeBodyPart();
 	    	cuerpoMensaje = new MimeBodyPart();
-	    	DataSource fuente = new FileDataSource("C:/Users/miguel/Desktop/pedido.pdf");
+	    	DataSource fuente = new FileDataSource("/home/azureuser/pedido.pdf");
 	    	cuerpoMensaje.setDataHandler(new DataHandler(fuente));
 	    	cuerpoMensaje.setFileName("pedido.pdf");
 	    	multiparte.addBodyPart(cuerpoMensaje);
