@@ -10,5 +10,6 @@ public class EmailSenderApplication {
 		SpringApplication.run(EmailSenderApplication.class, args);
 		ServidorEmail x=new ServidorEmail();
 		x.iniciar();
+		
 	}
 }

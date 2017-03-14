@@ -7,6 +7,7 @@ public class ServidorEmail {
 	private Socket sCliente;
 	private Scanner entrada;
 	public void iniciar(){
+		while(true){
 		try{
 			sServidor=new ServerSocket(9990);
 			System.out.println(" - SERVIDOR INICIADO - ");
@@ -27,6 +28,7 @@ public class ServidorEmail {
 		catch(Exception e){
 			e.printStackTrace();
 			finalizar();
+		}
 		}
 		}
 	public void finalizar(){
